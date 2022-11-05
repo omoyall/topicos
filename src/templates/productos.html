@@ -1,0 +1,75 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/productos.css') }}">
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg header-nav sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('menu') }}">
+                <img src="{{ url_for('static', filename='img/logobg.png') }}" alt="" width="50"  height="50">  Hamburgesotas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="principal container-fluid">
+        <div class="container-fluid d-flex justify-content-end">
+            <a href="{{ url_for('menu') }}"> <img src="{{ url_for('static', filename='img/flecha.png') }}" alt="" width="50" height="50" class="me-auto icono"></a>
+            <a href="{{ url_for('confirmacion_pedido') }}"> <img src="{{ url_for('static', filename='img/carrito.png') }}" alt="" width="50" height="50" class="me-auto icono carrito"></a>
+            <label class="n_pedidos" for="carrito"> |{{ session['cantidad_pedido_completa'] }}</label>
+        </div>
+        <div class="container">
+
+            <div class="row justify-content-center">
+                {% for producto in productos %}
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <form method="POST" action="/agregar">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <div class="card mb-4">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="card-body">
+                                        <h5 class="card-title nombre">{{ producto['NOMBRE'] }}</h5>
+                                        <p class="card-text precio">$ {{ producto['PRECIO'] }}</p>
+                                        <div class="agregar_al_carrito">
+                                            <input type="hidden" name="codigo" value="{{ producto['CODIGO'] }}"/>
+                                            <input type="hidden" name="categoria" value="{{ producto['CATEGORIA'] }}"/>
+                                            <label class="cantidad_label" for="cantidad">Cantidad: </label>
+                                            <input type="number" class="cantidad_producto" id="cantidad" name="cantidad" value="1" min="1" size="1" /><br>
+                                            <input type="submit" value="AÑADIR AL CARRITO" class="btn btn-lg btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="foto col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <img src="/static/img/{{ producto['IMAGEN'] }}" class="img-fluid rounded-end" alt="...">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}    
+            </div>
+
+        </div>
+
+    </div>
+    
+{% endblock %}
+{% block footer %}
+{% endblock %}

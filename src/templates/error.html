@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <h1>Bienvenido A Hamburgesotas</h1>
+                <h2>No puedes ordenar antes de dejarnos tu informacion de cliente</h2>
+                <h3>Animate y inicia tu pedido!</h3>
+                <a href="{{ url_for('inicio_pedido') }}"><button type="button" class="btn btn-lg btn-primary">Iniciar Pedido</button></a>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <img src="{{ url_for('static', filename='img/logobg.png') }}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+{% block footer %}
+{% endblock %}

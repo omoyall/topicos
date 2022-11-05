@@ -1,0 +1,103 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg header-nav sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('menu') }}">
+                <img src="{{ url_for('static', filename='img/logobg.png') }}" alt="" width="50"  height="50">  Hamburgesotas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid titulo">
+        <h1 class="texto">{{ session['cliente']['nombre'] }}. Te presentamos el resumen de tu pedido!</h1>
+    </div>
+
+    <div class="container">
+        <div class="table-responsive">
+
+        {% if 'pedido' in session %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th class="text-center">Precio Unit.</th>
+                        <th class="text-center">Precio</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+            {% for key, val in session['pedido'].items() %}
+                {% set cantidad = session['pedido'][key]['cantidad'] %}
+                {% set precio = session['pedido'][key]['precio'] %}
+                {% set item_precio = session['pedido'][key]['total_precio'] %} 
+                    <tr>
+                        <td>
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/static/img/{{ session['pedido'][key]['imagen'] }}" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body" style="padding-left:10px;">
+                                    <h4 class="media-heading">{{ session['pedido'][key]['nombre'] }}</h4>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center"><strong>{{ cantidad }} </strong></td>
+                        <td class="text-center"><strong>${{ precio }} </strong></td>
+                        <td class="text-center"><strong>${{ item_precio }} </strong></td>
+                        <td>
+                            <a href="{{ url_for('eliminar_producto', codigo=session['pedido'][key]['codigo']) }}"><img src="/static/img/eliminar.png" alt="" class="btn-eliminar"></a>
+                        </td>
+                    </tr>
+    {% endfor %}
+                    <tr>
+                        <td colspan="4">
+                            <h5>Cantidad Total</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5><strong>{{ session['cantidad_pedido_completa'] }}</strong></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <h3>Total</h3>
+                        </td>
+                        <td colspan="2" class="text-right">
+                            <h3><strong>$ {{ session['precio_pedido_completo'] }}</strong></h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="holi" colspan="4">
+                            <a href="{{ url_for('menu') }}"><button type="button" class="btn btn-primary btn-comprarmas">CONTINUAR COMPRANDO</button></a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('menu') }}"><button type="button" class="btn btn-success btn-pagar">PAGAR</button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  {% endif %}
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

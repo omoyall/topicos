@@ -1,0 +1,120 @@
+body{
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar {
+    background-color: black;
+    padding: 10px;
+    padding-left: 20px;
+}
+
+.navbar-brand{
+    font-family: Verdana;
+    font-size: 30px;
+    color:  #FFF;
+    padding-left: 20px;
+}
+
+.navbar-brand:hover{
+    color:#FD941F
+}
+
+.navbar-toggler{
+    background: #FD941F;
+    height: 40px;
+}
+
+.navbar-toggler span{
+    display: block;
+    width: 20px;
+    height: 2px;
+    border: 1px;
+    background:#FFF;
+}
+
+.navbar-toggler span + span{
+    margin-top: 4px;
+    width: 15px;
+    margin-left: 4px;
+}
+
+.navbar-toggler span + span + span{
+    width: 10px;
+    margin-left: 4px;
+}
+
+.nav-link{
+    font-family: Verdana;
+    font-size: 15px;
+    color:  #FFF;
+}
+
+.navbar-nav .nav-item .nav-link:hover{
+    border-bottom: 4px solid #FD941F;
+    color: #FD941F;
+}
+
+.navbar-nav .nav-item .nav-link:active{
+    border-bottom:  4px solid #FD941F;
+    color: #FD941F;
+}
+
+.titulo{
+    background-color: black;
+}
+
+.texto{
+    padding: 20px;
+    color:#FFF;
+}
+
+.table {
+    margin-top: 10px;
+    border: 1px solid #FFF;
+}
+
+thead{
+    color: #FFF;
+}
+
+td{
+    color: #FFF;
+}
+
+.media{
+    display: flex;
+    align-items: center;
+}
+
+.media-heading{
+    font-size: 1.2vmax;
+}
+
+.btn-eliminar{
+    width: 30px;
+    height: 30px;
+}
+
+.btn-comprarmas{
+    background-color: #FD941F;
+    border-color: #FD941F;
+    color:#FFF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.holi .btn-comprarmas:hover{
+    background-color: #FFF; 
+    border-color: #FFF; 
+    color: black;
+}
+
+.btn-pagar{
+    color:#FFF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}

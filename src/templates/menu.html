@@ -1,0 +1,126 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+{% endblock %}
+
+{% block body %}    
+    <nav class="navbar navbar-expand-lg header-nav sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('menu') }}">
+                <img src="{{ url_for('static', filename='img/logobg.png') }}" alt="" width="50"  height="50">  Hamburgesotas
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="principal container-fluid">
+
+    
+        <div class="container d-flex justify-content-end">
+            <a href="{{ url_for('confirmacion_pedido') }}"><button type="button" class="btn btn-lg btn-primary btn-pedido me-auto">VER TU PEDIDO</button></a>
+        </div>
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+            <br />
+            {% for message in messages %}
+            <div class="alert alert-primary alert-dismissible" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% endwith %}
+        </div>
+        <div class="container">
+            <div class="row justify-content-center fila">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card mb-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="card-body">
+                                    <h5 class="card-title nombre">HAMBURGESAS</h5>
+                                    <p class="card-text descripcion">Selecciona todas las hamburgesas que quieras!</p>
+                                    <a href="{{ url_for('productos', categoria='HAMBURGESA') }}"><button type="button" class="w-100 btn btn-lg btn-primary">INGRESAR</button></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <img src="/static/img/hamburgesa.jpg" class="imagen img-fluid rounded-end" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card mb-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="card-body">
+                                    <h5 class="card-title nombre">ACOMPAÑAMIENTOS</h5>
+                                    <p class="card-text descripcion">No te olvides de tu acompañamiento!</p>
+                                    <a href="{{ url_for('productos', categoria='ACOMPAÑAMIENTO') }}"><button type="button" class="w-100 btn btn-lg btn-primary">INGRESAR</button></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <img src="/static/img/acompañamiento.jpg" class="imagen img-fluid rounded-end" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card mb-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="card-body">
+                                    <h5 class="card-title nombre">BEBIDAS</h5>
+                                    <p class="card-text descripcion">Selecciona todas las bebidas que quieras!</p>
+                                    <a href="{{ url_for('productos', categoria='BEBIDA') }}"><button type="button" class="w-100 btn btn-lg btn-primary">INGRESAR</button></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <img src="/static/img/bebidas" class="imagen img-fluid rounded-end" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card mb-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="card-body">
+                                    <h5 class="card-title nombre">POSTRES</h5>
+                                    <p class="card-text descripcion">Selecciona todas los postres que quieras!</p>
+                                    <a href="{{ url_for('productos', categoria='POSTRE') }}"><button type="button" class="w-100 btn btn-lg btn-primary">INGRESAR</button></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <img src="/static/img/postres" class="imagen img-fluid rounded-end" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+{% block footer %}
+{% endblock %}
