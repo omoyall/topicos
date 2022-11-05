@@ -10,13 +10,11 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                <h1>Bienvenido A Hamburgesotas</h1>
-                <h2>Donde se preparan las mejores hamburgesas a lo largo de todo Chile</h2>
-                <h3>Animate y inicia tu pedido!</h3>
-                <div class="botones">
-                    <a href="{{ url_for('inicio_pedido') }}"><button type="button" class="btn btn-lg btn-primary">Iniciar Pedido</button></a>
-                    <a href="{{ url_for('administradores') }}"><button type="button" class="btn btn-lg btn-primary">Ingresar Admin</button></a>
-                </div>
+                <h1>Bienvenido {{ admin }}</h1>
+                <h2>Descarga las transacciones realizadas hasta la fecha</h2>
+                <h3>TKM</h3>
+                <a href="{{ url_for('descargar_reporte') }}"><button type="button" class="btn btn-lg btn-primary">Descargar Reporte</button></a>
+
             </div>
 
             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">

@@ -49,6 +49,31 @@ def inicio_pedido():
 def error():
     return render_template('error.html')
 
+@app.route('/descargar_reporte')
+def descargar_reporte():
+    return "holi"
+    #return send_file(ruta_archivo,mimetype='text/csv',download_name = filename, as_attachment=True)
+
+@app.route('/administradores', methods=['GET', 'POST'])
+def administradores():
+    if request.method=="POST":
+        _usuario = request.form['usuario']
+        _password = request.form['contraseña']
+        conn = pool.acquire()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ADMINISTRADORES WHERE USUARIO=(:0) AND CLAVE=(:1)", (_usuario, _password))
+        data = cursor.fetchone()
+        cursor.close()
+        pool.release(conn)
+        if data != None:
+                return render_template('reporte.html', admin=_usuario)
+        else:
+            flash("Usuario o Clave Invalidos....")
+            return render_template('login.html')
+
+    else:
+        return render_template('login.html')
+
 @app.route('/menu', methods=['GET'])
 def menu():
     if 'cliente' in session:
