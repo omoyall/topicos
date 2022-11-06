@@ -52,7 +52,11 @@
                                             <input type="hidden" name="categoria" value="{{ producto['CATEGORIA'] }}"/>
                                             <label class="cantidad_label" for="cantidad">Cantidad: </label>
                                             <input type="number" class="cantidad_producto" id="cantidad" name="cantidad" value="1" min="1" size="1" /><br>
-                                            <input type="submit" value="AÑADIR AL CARRITO" class="btn btn-lg btn-primary" />
+                                            {% if producto['STOCK'] <= producto['STOCK_MIN'] %}
+                                                <input type="submit" value="AÑADIR AL CARRITO" class="btn btn-lg btn-primary disabled" />
+                                            {% else %}
+                                                <input type="submit" value="AÑADIR AL CARRITO" class="btn btn-lg btn-primary" />
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
