@@ -9,6 +9,19 @@
 {% block body %}
 <form class="form-signin" action="/inicio_pedido" method="POST">
     <img class="mb-4" src="{{ url_for('static', filename='img/logobg.png') }}" alt="" width="200" height="200">
+    {% with messages = get_flashed_messages() %}
+
+    {% if messages %}
+    <br />
+    {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% endwith %}
 
     <h1 class="h3 mb-3 fw-normal title">Ingresa tus datos</h1>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -29,7 +42,7 @@
         <label for="direccion_cliente">DIRECCION CLIENTE</label>
     </div>
     <div class="form-floating mt-2">
-        <input type="text" class="form-control" name="telefono_cliente" placeholder="TELEFONO CLIENTE" required>
+        <input pattern=".{8,12}" class="form-control" name="telefono_cliente" placeholder="TELEFONO CLIENTE" required>
         <label for="telefono_cliente">TELEFONO CLIENTE</label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>

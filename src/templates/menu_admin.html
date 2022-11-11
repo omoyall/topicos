@@ -1,0 +1,51 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu_admin.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid titulo">
+        <h1 class="texto"> Bienvenido Administrador {{ admin }}.</h1>
+    </div>
+ 
+    <div class="container">
+        <div class="row justify-content-center fila">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title nombre">REPORTE</h5>
+                        <p class="card-text descripcion">DESCARGAR LAS VENTAS REALIZADAS HASTA LA FECHA</p>
+                        <a href="{{ url_for('descargar_reporte') }}"><button type="button" class="btn btn-lg btn-primary">DESCARGAR REPORTE</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title nombre">STOCK</h5>
+                        <p class="card-text descripcion">RELLENAR TU STOCK!</p>
+                        <a href="{{ url_for('ver_stock') }}"><button type="button" class="btn btn-lg btn-primary">INGRESAR</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title nombre">SALIR</h5>
+                        <p class="card-text descripcion">CIERRA SECCION DE ADMIN!</p>
+                        <a href="{{ url_for('logout_admin') }}"><button type="button" class="btn btn-lg btn-primary">SALIR</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    
+{% endblock %}
+{% block footer %}
+{% endblock %}

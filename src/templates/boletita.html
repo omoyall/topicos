@@ -3,33 +3,14 @@
 {% block title %}Inicio{% endblock %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/boletita.css') }}">
 {% endblock %}
 
 {% block body %}
-    <nav class="navbar navbar-expand-lg header-nav sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('menu') }}">
-                <img src="{{ url_for('static', filename='img/logobg.png') }}" alt="" width="50"  height="50">  Hamburgesotas
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Salir</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="container-fluid titulo">
-        <h1 class="texto">{{ session['cliente']['nombre'] }}. Te presentamos el resumen de tu pedido!</h1>
+        <h1 class="texto">{{ session['cliente']['nombre'] }}. Espero que hayas disfrutado tu comida. <br> Te presentamos el resumen de tu pedido!</h1>
+        <h2 class="texto">Gracias por realizar tu compra!</h2>
     </div>
 
     <div class="container">
@@ -43,7 +24,6 @@
                         <th>Cantidad</th>
                         <th class="text-center">Precio Unit.</th>
                         <th class="text-center">Precio</th>
-                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,13 +43,10 @@
                         <td class="text-center"><strong>{{ cantidad }} </strong></td>
                         <td class="text-center"><strong>${{ precio }} </strong></td>
                         <td class="text-center"><strong>${{ item_precio }} </strong></td>
-                        <td>
-                            <a href="{{ url_for('eliminar_producto', codigo=session['pedido'][key]['codigo']) }}"><img src="/static/img/eliminar.png" alt="" class="btn-eliminar"></a>
-                        </td>
                     </tr>
     {% endfor %}
                     <tr>
-                        <td colspan="4">
+                        <td colspan="3">
                             <h5>Cantidad Total</h5>
                         </td>
                         <td class="text-right">
@@ -77,7 +54,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="3">
                             <h3>Total Neto</h3>
                         </td>
                         <td class="text-right">
@@ -85,7 +62,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="3">
                             <h3>IVA</h3>
                         </td>
                         <td class="text-right">
@@ -93,7 +70,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">
+                        <td colspan="2">
                             <h3>Total</h3>
                         </td>
                         <td colspan="2" class="text-right">
@@ -101,14 +78,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="holi" colspan="1">
-                            <a href="{{ url_for('eliminar_carrito') }}"><button type="button" class="btn btn-primary btn-eliminar-todo">BORRAR CARRITO</button></a>
-                        </td>
-                        <td class="holi" colspan="3">
-                            <a href="{{ url_for('menu') }}"><button type="button" class="btn btn-primary btn-comprarmas">CONTINUAR COMPRANDO</button></a>
-                        </td>
-                        <td>
-                            <a href="{{ url_for('pagar') }}"><button type="button" class="btn btn-success btn-pagar">PAGAR</button></a>
+                        <td class="holi" colspan="4">
+                            <a href="{{ url_for('logout') }}"><button type="button" class="btn btn-primary">SALIR</button></a>
                         </td>
                     </tr>
                 </tbody>

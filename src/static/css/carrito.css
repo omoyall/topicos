@@ -112,6 +112,21 @@ td{
     color: black;
 }
 
+.btn-eliminar-todo{
+    background-color: red;
+    border-color: red;
+    color:#FFF;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.holi .btn-eliminar-todo:hover{
+    background-color: #FFF; 
+    border-color: #FFF; 
+    color: black;
+}
+
 .btn-pagar{
     color:#FFF;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

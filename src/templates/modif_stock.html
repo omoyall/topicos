@@ -1,0 +1,57 @@
+{% extends './base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modif_stock.css') }}">
+{% endblock %}
+
+{% block body %}
+   
+    <div class="principal container-fluid">
+        <div class="container-fluid d-flex justify-content-end">
+            <a href="{{ url_for('menu_admin') }}"> <img src="{{ url_for('static', filename='img/flecha.png') }}" alt="" width="50" height="50" class="me-auto icono"></a>
+        </div>
+    </div> 
+    <div class="container-fluid titulo">
+        <h1 class="texto">{{ current_user.usuario }} Aqui puedes ver los productos que tiene bajo stock y aumentarlos :D</h1>
+    </div>
+    <div class="container">
+        {% if productos|length >= 1 %}
+        <div class="row justify-content-center">
+            {% for producto in productos %}
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <form method="POST" action="/agregar_stock">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="card mb-4">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="card-body">
+                                    <h5 class="card-title nombre">{{ producto['NOMBRE'] }}</h5><BR></BR>
+                                    <div class="datos_producto">
+                                        <input type="hidden" name="codigo" value="{{ producto['CODIGO'] }}"/>
+                                        <input type="hidden" name="categoria" value="{{ producto['CATEGORIA'] }}"/>
+                                        <label class="cantidad_label" for="cantidad">Cantidad: </label>
+                                        <input type="number" class="cantidad_producto" id="cantidad" name="cantidad" value="10" min="10" size="1" /><br>
+                                        <input type="submit" value="AGREGAR STOCK" class="btn btn-lg btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="foto col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <img src="/static/img/{{ producto['IMAGEN'] }}" class="img-fluid rounded-end" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endfor %}    
+        </div>
+        {% else %}
+        <h3 class="no_problem">No existe falta de stock :D</h3>
+        {% endif %}
+    </div>
+    
+{% endblock %}
+{% block footer %}
+{% endblock %}
