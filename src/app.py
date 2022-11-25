@@ -320,7 +320,9 @@ def pagar():
             except oracledb.DatabaseError as e:
                 error_obj, = e.args
                 print("Error Code:", error_obj.code)
+                cursor.close()
                 conn.rollback()
+                pool.release(conn)
             else:
                 cursor.close()
                 conn.commit()
