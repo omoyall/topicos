@@ -14,11 +14,11 @@ oracledb.init_oracle_client()
 login_manager_app = LoginManager(app)
 
 pool = oracledb.SessionPool(
-    user='PROYECTO',
-    password='123456',
-    dsn= 'PROYECTO/123456@localhost:1521/xe',
-    min=2,
-    max=5,
+    user='oracleuser',
+    password='Pingpong12',
+    dsn= 'oracleuser/Pingpong12@172.107.32.111:15789/xe',
+    min=5,
+    max=10,
     increment=1,
     encoding="UTF-8")
 
